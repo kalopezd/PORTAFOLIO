@@ -6,7 +6,7 @@
 
 
 
-El presente proyecto tiene como finalidad elaborar un análisis estadístico de la mortalidad por diabetes en Colombia, utilizando las bases de datos de Estadísticas Vitales (EEVV) publicadas por el DANE para los años 2020, 2021,2022, 2023 y 2024. El análisis abarca desde la exploración descriptiva de los datos hasta la construcción de modelos estadísticos que permitan identificar patrones, tendencias y factores asociados a esta enfermedad.
+El presente proyecto tiene como finalidad elaborar un análisis estadístico de la mortalidad por diabetes en Colombia, utilizando las bases de datos de Estadísticas Vitales (EEVV) publicadas por el DANE para los años 2020, 2021, 2022, 2023 y 2024. El análisis abarca desde la exploración descriptiva de los datos hasta la construcción de modelos estadísticos que permitan identificar patrones, tendencias y factores asociados a esta enfermedad.
 
 
 
