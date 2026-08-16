@@ -1,0 +1,66 @@
+---
+title: "TEORIA DE RESPUESTA AL ITEM"
+author: "Karen López"
+date: "2026-08-16 (Actualización)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+EJERCICIO PRACTICO I:
+Importamos la librería "mirt"
+NOTA: Puede ser necesario instalar o actualizar otras librerías previamente.
+
+```{r}
+#install.packages("RcppParallel", repos = "https://cloud.r-project.org")
+#install.packages("stringfish", repos = "https://cloud.r-project.org")
+#install.packages("qs2", repos = "https://cloud.r-project.org")
+#install.packages("SimDesign", repos = "https://cloud.r-project.org")
+library(mirt)
+```
+Los datos que se usarán en este ejercico están incluidos en el paquete (respuestas dicotómicas)
+NOTA:El dataset "LSAT7" está conformado por 6 columnas, de las cuales 5 hacen referencia a los items, y una a la frecuencia de cada parton de respuesta.Conviene organizar una dataset donde cada patron de respuesta se repita, según su frecuencia
+
+```{r}
+data("LSAT7")
+str(LSAT7)
+head(LSAT7)
+datos <- LSAT7[rep(seq_len(nrow(LSAT7)), LSAT7$freq), 1:5]
+head(datos)
+```
+
+
+
+Ajustamos un modelo 2PL unidimensional teniendo  en cuenta lo anterior.
+```{r}
+
+modelo <- mirt(datos, 1, itemtype = "2PL", freq = "freq")
+```
+Obtenemos los coeficientes de modleo ajustado
+```{r}
+summary(modelo)
+coef(modelo, IRTpars = TRUE)
+
+```
+
+Si revisamos las cargas factoriales, observamos que el ítem 3 presenta la mayor carga factorial (0.708), por lo que es el ítem que tiene una relación más fuerte con la habilidad o variable latente que estamos midiendo. Por otro lado, el ítem 5 presenta la menor carga factorial (0.397), lo que indica que tiene una relación menos fuerte con dicha habilidad.
+
+Por otra parte, si osbervamos los parametros a y b (Discriminación y Dificulatd respectivamente) tenemos que:
+
+el item 1 tiene una baja dificultad (-1.88) y discriminación moderada (0.99),
+el item 2 es más dificil que el anterior (-0.75) y tiene una buena discriminación (1.1),
+el item 3 es el que permite mayor discrimación de los cinco evaluados (1.71),
+el item 4 es el más dificil de los cinco  (-0.63), pero tiene baja discriminación (0.76),
+el item 5 es el que tiene menos dificultad (-2.52) y baja discriminación (0.74)
+
+
+```{r}
+theta <- fscores(modelo)
+head(theta)
+```
+ Curva característica del ítem (ICC)
+```{r}
+plot(modelo, type = "trace")
+```
+```
