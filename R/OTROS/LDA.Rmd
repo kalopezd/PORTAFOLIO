@@ -1,0 +1,45 @@
+---
+title: "LDA"
+author: "Karen López"
+date: "2026-08-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Instalamos e importamos librerías necesarias.
+
+```{r}
+#install.packages(c("topicmodels", "tm"))
+library(topicmodels)
+library(tm)
+```
+Usamos los datos "AssociatePress", de la librería tm,  para el ejercicio.
+Contiene la frecuencia de 10473 terminos en 2246 documentos.
+```{r}
+data("AssociatedPress") 
+#help(AssociatedPress)
+
+#dim(AssociatedPress)
+#inspect(AssociatedPress[6:10, 1:10])
+
+```
+Usamos 5 topicos para ajustar el modelo. Usamos la función LDA y una semilla para reproducibilidad.
+```{r}
+modelo_lda <- LDA(AssociatedPress, k = 5, control = list(seed = 123))
+```
+
+Oservamos lo terminos asociados a cada topico. 
+
+```{r}
+terms(modelo_lda, 10)
+```
+
+Hasta ahora los topicos no están nombrados o son desconocidos.Para eso, según las palabras que estan asociadas a estos, asignarémos el nombre que consideremos coveniente:
+
+Topico 1: Laboral
+Topico 2: Legal
+Topico 3: Económico
+Topico 4: Político
+Topico 5: Politica Internacional
