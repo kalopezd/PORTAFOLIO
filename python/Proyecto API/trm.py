@@ -1,4 +1,4 @@
-#Buscamos  en al pagina del DANE el endpoint acerca de los datos de  la TRM
+#Buscamos  en la pagina del DANE el endpoint acerca de los datos de  la TRM
 #https://www.datos.gov.co/resource/32sa-8pi3.json ENDPOINT ECONTRADO
 import requests#Librería para realizar peticiones HTTP
 import pandas as pd
